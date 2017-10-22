@@ -6,6 +6,7 @@ if ! [ -d ~/.slimzsh ]; then
 fi
 
 # Load up completions.
+[ "$(hostname)" =~ "raijin.*" ] && fpath+=/usr/share/zsh/4.3.11/functions
 fpath+=~/.zfunc
 
 # If the terminal is running in e.g. Emacs, make sure to not set a complicated
@@ -63,6 +64,13 @@ alias small="printf '\e[8;25;80t'"
 
 # And the same for go
 [ -d "$HOME/Documents/go" ] && GOPATH="$HOME/Documents/go" && PATH="${GOPATH//://bin:}/bin:$PATH"
+
+# Add miniconda
+if [ "$(hostname)" = "spartan.hpc.unimelb.edu.au" ]; then
+    PATH="$HOME/punim0008/local/miniconda2/bin:$PATH"
+else
+    PATH="$PATH:/usr/local/miniconda3/bin"
+fi
 export PATH
 
 # Load up fzf
