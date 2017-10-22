@@ -6,7 +6,7 @@ if ! [ -d ~/.slimzsh ]; then
 fi
 
 # Load up completions.
-[ "$(hostname)" =~ "raijin.*" ] && fpath+=/usr/share/zsh/4.3.11/functions
+[[ "$(hostname)" =~ "raijin.*" ]] && fpath+=/usr/share/zsh/4.3.11/functions
 fpath+=~/.zfunc
 
 # If the terminal is running in e.g. Emacs, make sure to not set a complicated
