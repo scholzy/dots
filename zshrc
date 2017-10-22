@@ -73,5 +73,8 @@ else
 fi
 export PATH
 
-# Load up fzf
+# Load up fzf and use rg by default if available
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if command -v rg > /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"' 
+fi
