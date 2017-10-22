@@ -22,7 +22,7 @@ Plug 'tommcdo/vim-lion'
 " }}}
 " Backup handling {{{
 set backup
-set noswapfile
+set swapfile
 
 set undodir=~/.config/nvim/tmp/undo//     " undo files
 set backupdir=~/.config/nvim/tmp/backup// " backups
@@ -90,7 +90,10 @@ Plug 'wellle/targets.vim'
 
 " Colors and UI
 " Colorscheme {{{
-colorscheme noctu
+" colorscheme noctu
+Plug 'morhetz/gruvbox'
+let g:gruvbox_termcolors=16
+let g:gruvbox_contrast_dark='medium'
 " }}}
 " Statusline {{{
 Plug 'itchyny/lightline.vim'
@@ -134,3 +137,6 @@ Plug 'rust-lang/rust.vim', {'for': 'rust'}
 " }}}
 
 call plug#end()
+
+colorscheme gruvbox
+set background=dark
