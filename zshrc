@@ -35,11 +35,17 @@ else
 fi
 
 # A brief alias to check running jobs on the University of Melbourne HPC
-# cluster.
+# cluster and on raijin at the NCI.
 if [ "$(hostname)" = "spartan.hpc.unimelb.edu.au" ]; then
     alias sq="squeue -u mscholz"
 else
     alias sq="ssh spartan.hpc.unimelb.edu.au squeue -u mscholz"
+fi
+
+if [[ "$(hostname)" =~ "raijin.*" ]]; then
+    alias qs="qstat -u ms9470"
+else
+    alias qs="ssh ms9470@raijin.nci.org.au /opt/pbs/default/bin/qstat -u ms9470"
 fi
 
 # Make it faster and easier to background/foreground vim.
