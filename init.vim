@@ -91,9 +91,11 @@ Plug 'wellle/targets.vim'
 " Colors and UI
 " Colorscheme {{{
 " colorscheme noctu
-Plug 'morhetz/gruvbox'
-let g:gruvbox_termcolors=16
-let g:gruvbox_contrast_dark='medium'
+" Plug 'morhetz/gruvbox'
+let g:coralbox_termcolors=16
+let g:coralbox_contrast_dark='medium'
+set background=dark
+colo coralbox
 " }}}
 " Statusline {{{
 Plug 'itchyny/lightline.vim'
@@ -137,6 +139,3 @@ Plug 'rust-lang/rust.vim', {'for': 'rust'}
 " }}}
 
 call plug#end()
-
-colorscheme gruvbox
-set background=dark
