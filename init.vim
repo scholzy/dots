@@ -1,4 +1,4 @@
-" .vimrc
+" init.vim
 " Author: Michael Scholz
 " Email: m@scholz.moe
 "
@@ -58,6 +58,11 @@ Plug 'junegunn/fzf.vim'
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>t :Files<CR>
 " }}}
+" Git {{{
+Plug 'tpope/vim-fugitive'
+" Plug 'airblade/vim-gitgutter'
+" let g:gitgutter_override_sign_column_highlight = 0
+" }}}
 " Indenting {{{
 " Allow indenting by block in visual mode
 vnoremap < <gv
@@ -107,6 +112,9 @@ let g:lightline = {
 " }}}
 
 " Filetype-specific
+" C++ {{{
+Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
+" }}}
 " Go {{{
 Plug 'fatih/vim-go', {'for': 'go'}
 " }}}

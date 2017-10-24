@@ -12,7 +12,8 @@ fpath+=~/.zfunc
 # If the terminal is running in e.g. Emacs, make sure to not set a complicated
 # prompt and skip loading slimzsh to speed up load time.
 if [ $TERM = "dumb" ]; then
-    export PS1="» %m » [%3d]: "
+    # export PS1="%m > [%3d]$ "
+    export PS1="$ "
 else
     export PURE_PROMPT_SYMBOL='»'
     source ~/.slimzsh/slim.zsh
