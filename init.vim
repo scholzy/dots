@@ -23,6 +23,7 @@ Plug 'tommcdo/vim-lion'
 " Backup handling {{{
 set backup
 set swapfile
+set undofile
 
 set undodir=~/.config/nvim/tmp/undo//     " undo files
 set backupdir=~/.config/nvim/tmp/backup// " backups
