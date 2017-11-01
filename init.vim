@@ -69,6 +69,9 @@ Plug 'tpope/vim-fugitive'
 vnoremap < <gv
 vnoremap > >gv|
 " }}}
+" Minimal view {{{
+Plug 'junegunn/goyo.vim'
+" }}}
 " Pairwise movement {{{
 Plug 'tpope/vim-unimpaired'
 " }}}
@@ -122,6 +125,7 @@ Plug 'fatih/vim-go', {'for': 'go'}
 " LaTeX {{{
 Plug 'lervag/vimtex', {'for': 'tex'}
 au FileType tex set linebreak
+let g:tex_conceal = ""
 " }}}
 " Nim {{{
 Plug 'zah/nim.vim', {'for': 'nim'}
@@ -145,6 +149,7 @@ endfunction
 " }}}
 " Rust {{{
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'racer-rust/vim-racer', {'for': 'rust'}
 " }}}
 
 call plug#end()
