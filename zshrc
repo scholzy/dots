@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Set hostname color
-[ "$(hostname)" = "yokohama.local" ] || zstyle ':prompt:grml:*:items:hostname' pre '%F{red}'
+[ "$(hostname)" = "yokohama.local" ] || zstyle ':prompt:grml:*:items:host' pre '%F{red}'
 
 # Load up completions.
 [[ "$(hostname)" =~ "raijin.*" ]] && fpath+=/usr/share/zsh/4.3.11/functions
