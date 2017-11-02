@@ -58,7 +58,7 @@ noremap gk k
 set foldmethod=marker
 " }}}
 " Fuzzy finding {{{
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all --no-update-rc'}
 Plug 'junegunn/fzf.vim'
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>t :Files<CR>
