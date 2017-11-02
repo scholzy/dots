@@ -43,6 +43,10 @@ endif
 " Commenting {{{
 Plug 'tpope/vim-commentary'
 " }}}
+" Completion {{{
+Plug 'lifepillar/vim-mucomplete'
+set completeopt+=menuone
+" }}}
 " Directional keybindings {{{
 " Move by visual line, not textual line
 noremap j gj
@@ -68,6 +72,11 @@ Plug 'tpope/vim-fugitive'
 " Allow indenting by block in visual mode
 vnoremap < <gv
 vnoremap > >gv|
+" }}}
+" Linting {{{
+Plug 'w0rp/ale'
+let g:ale_sign_error = "x "
+let g:ale_sign_warning = "- "
 " }}}
 " Minimal view {{{
 Plug 'junegunn/goyo.vim'
@@ -131,7 +140,7 @@ let g:tex_conceal = ""
 Plug 'zah/nim.vim', {'for': 'nim'}
 " }}}
 " Python {{{
-Plug 'python-mode/python-mode', {'for': 'python', 'branch': 'develop'}
+" Plug 'python-mode/python-mode', {'for': 'python', 'branch': 'develop'}
 " Turn off the default options set up by python-mode
 let g:pymode_options = 0
 " Turn off linting on write
