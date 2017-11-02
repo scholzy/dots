@@ -132,8 +132,6 @@ Plug 'zah/nim.vim', {'for': 'nim'}
 " }}}
 " Python {{{
 Plug 'python-mode/python-mode', {'for': 'python', 'branch': 'develop'}
-" Use python3 by default
-let g:pymode_python = 'python3'
 " Turn off the default options set up by python-mode
 let g:pymode_options = 0
 " Turn off linting on write
