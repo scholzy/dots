@@ -7,6 +7,14 @@
 [[ "$(hostname)" =~ "raijin.*" ]] && fpath+=/usr/share/zsh/4.3.11/functions
 fpath+=~/.zfunc
 
+# Make grml completion more like in slimzsh
+if [ "x$CASE_SENSITIVE" = "xtrue" ]; then
+  zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+  unset CASE_SENSITIVE
+else
+  zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+fi
+
 # Color in filenames and directories in ls. MacOS and GNU ls use different flags
 # for this for some reason.
 if [ "$(uname)" = "Darwin" ]; then
