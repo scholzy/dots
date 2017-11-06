@@ -10,12 +10,13 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 " }}}
 call plug#begin('~/.config/nvim/plugged')
+" Things that need to be done first
 " Leader key {{{
 let mapleader = " "
 nnoremap <SPACE> <Nop>
 let maplocalleader = ","
 " }}}
-"
+
 " General settings
 " Alignment {{{
 Plug 'tommcdo/vim-lion'
@@ -121,7 +122,23 @@ set laststatus=2 " Make sure the statusline is turned on
 set noshowmode " No need to show --INSERT-- anymore
 let g:lightline = {
     \ 'colorscheme': 'wombat',
+    \ 'component_function': {
+    \   'readonly': 'LightlineReadonly',
+    \   'fugitive': 'LightlineFugitive'
+    \ },
+    \ 'separator': { 'left': '', 'right': '' },
+    \ 'subseparator': { 'left': '', 'right': '' }
     \ }
+function! LightlineReadonly()
+    return &readonly ? '' : ''
+endfunction
+function! LightlineFugitive()
+    if exists('*fugitive#head')
+        let branch = fugitive#head()
+        return branch !=# '' ? ''.branch : ''
+    endif
+    return ''
+endfunction
 " }}}
 
 " Filetype-specific
@@ -130,6 +147,9 @@ Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
 " }}}
 " Go {{{
 Plug 'fatih/vim-go', {'for': 'go'}
+" }}}
+" Julia {{{
+Plug 'JuliaEditorSupport/julia-vim'
 " }}}
 " LaTeX {{{
 Plug 'lervag/vimtex', {'for': 'tex'}
