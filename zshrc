@@ -45,6 +45,10 @@ else
     alias qs="ssh ms9470@raijin.nci.org.au /opt/pbs/default/bin/qstat -u ms9470"
 fi
 
+# Fancy syntax highlighting
+[ -d "$HOME/.fast-syntax-highlighting" ] || git clone "https://github.com/zdharma/fast-syntax-highlighting" "$HOME/.fast-syntax-highlighting"
+source "$HOME/.fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+
 # Make it faster and easier to background/foreground vim.
 fancy-ctrl-z () {
   if [[ $#BUFFER -eq 0 ]]; then
@@ -68,6 +72,9 @@ alias small="printf '\e[8;25;80t'"
 # And the same for go
 [ -d "$HOME/Documents/go" ] && GOPATH="$HOME/Documents/go" && PATH="${GOPATH//://bin:}/bin:$PATH"
 
+# And OCaml
+. /Users/mscholz/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
 # Add miniconda
 if [ "$(hostname)" = "spartan.hpc.unimelb.edu.au" ]; then
     PATH="$HOME/punim0008/local/miniconda2/bin:$PATH"
@@ -80,4 +87,9 @@ export PATH
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 if command -v rg > /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"' 
+fi
+
+# ORCA configuration
+if [ -d "/usr/local/orca" ]; then
+    alias orca="/usr/local/orca/orca"
 fi
