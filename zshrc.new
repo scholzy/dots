@@ -1,0 +1,138 @@
+#!/usr/bin/env zsh
+
+#
+# Initialize the zplug plugin manager.
+#
+
+export ZPLUG_HOME="$HOME/.zplug"
+if [ ! -d "${ZPLUG_HOME}" ]; then
+    git clone https://github.com/zplug/zplug "${ZPLUG_HOME}"
+fi
+source "${ZPLUG_HOME}/init.zsh"
+
+#
+# Absolutely basic changes.
+#
+
+# Use emacs keybindings.
+bindkey -e
+
+# Install missing functions if on the raijin supercomputer.
+[[ "$(hostname)" =~ "raijin.*" ]] && fpath+=/usr/share/zsh/4.3.11/functions
+
+# Install user-downloaded completions/functions
+fpath+="~/.zfunc"
+
+#
+# Prefer nvim if it's available.
+#
+
+if command -v nvim > /dev/null; then
+    alias vi=nvim
+    alias vim=nvim
+elif command -v vim > /dev/null; then
+    alias vi=vim
+fi
+
+#
+# Brief aliases to check running jobs on the University of Melbourne HPC
+# cluster and on raijin at the NCI.
+#
+
+if [ "$(hostname)" = "spartan.hpc.unimelb.edu.au" ]; then
+    alias sq="squeue -u mscholz"
+else
+    alias sq="ssh spartan.hpc.unimelb.edu.au squeue -u mscholz"
+fi
+
+if [[ "$(hostname)" =~ "raijin.*" ]]; then
+    alias qs="qstat -u ms9470"
+else
+    alias qs="ssh ms9470@raijin.nci.org.au /opt/pbs/default/bin/qstat -u ms9470"
+fi
+
+#
+# If on spartan, load up miniconda.
+#
+
+if [ "$(hostname)" = "spartan.hpc.unimelb.edu.au" ]; then
+    PATH="$HOME/punim0008/local/miniconda2/bin:$PATH"
+fi
+
+#
+# Install a nice zsh theme.
+#
+
+zplug "mafredri/zsh-async", \
+    from:github
+zplug "sindresorhus/pure", \
+    from:github, \
+    use:pure.zsh, \
+    as:theme
+
+#
+# Syntax highlighting for zsh, the faster variant.
+#
+
+zplug "zdharma/fast-syntax-highlighting", \
+    from:github, \
+    defer:2
+
+#
+# Color stuff in ls by default.
+#
+
+if [ "$(uname)" = "Darwin" ]; then
+    alias ls='ls -G'
+else
+    alias ls='ls --color=auto'
+fi
+
+#
+# Zsh completion.
+#
+
+# Use a menu-style completion interface.
+zstyle ':completion:*' menu select
+
+# Autocompletion for scp from remote computers.
+if [ "x$CASE_SENSITIVE" = "xtrue" ]; then
+  zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+  unset CASE_SENSITIVE
+else
+  zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' '
+l:|=* r:|=*'
+fi
+
+#
+# Make it faster and easier to background/foreground vim.
+#
+
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
+
+#
+# Finally, install all plugins which have not yet been installed.
+#
+
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+#
+# Then, source plugins and add commands to $PATH
+# 
+
+zplug load

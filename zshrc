@@ -63,8 +63,17 @@ zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
 # Resize terminal from zsh.
-alias big="printf '\e[8;49;80t'"
-alias small="printf '\e[8;25;80t'"
+function resimux {
+    if [ ! -z "$TMUX" ]; then
+        printf '\ePtmux;\e\e[8;%i;%it\e\' $1 $2
+    else
+        printf '\e[8;%i;%it' $1 $2
+    fi
+}
+
+alias big="resimux 49 80"
+alias vbig="resimux 49 160"
+alias small="resimux 25 80"
 
 # Add cargo to the PATH.
 [ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"

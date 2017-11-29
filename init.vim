@@ -55,8 +55,14 @@ noremap k gk
 noremap gj j
 noremap gk k
 " }}}
+" Directory navigation {{{
+Plug 'justinmk/vim-dirvish'
+" }}}
 " Folding {{{
 set foldmethod=marker
+" Automagically navigate and open/close folds while moving
+nnoremap <silent> z] :<C-u>silent! normal! zc<CR>zjzozz
+nnoremap <silent> z[ :<C-u>silent! normal! zc<CR>zkzo[zzz
 " }}}
 " Fuzzy finding {{{
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all --no-update-rc'}
@@ -74,6 +80,9 @@ Plug 'tpope/vim-fugitive'
 vnoremap < <gv
 vnoremap > >gv|
 " }}}
+" Line length {{{
+nnoremap <silent> <leader>c :let &cc = &cc == '' ? '80' : ''<CR>
+" }}}
 " Linting {{{
 Plug 'w0rp/ale'
 let g:ale_sign_error = "x "
@@ -90,6 +99,8 @@ Plug 'tpope/vim-unimpaired'
 nnoremap / /\v
 vnoremap / /\v
 
+nnoremap <leader>n :noh<CR>
+
 set ignorecase
 set smartcase
 set incsearch
@@ -102,6 +113,9 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+" }}}
+" Startup page {{{
+Plug 'mhinz/vim-startify'
 " }}}
 " Text objects {{{
 Plug 'wellle/targets.vim'
@@ -142,11 +156,17 @@ endfunction
 " }}}
 
 " Filetype-specific
+" C {{{
+Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'c'}
+" }}}
 " C++ {{{
 Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
 " }}}
 " Go {{{
 Plug 'fatih/vim-go', {'for': 'go'}
+" }}}
+" Javascript {{{
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 " }}}
 " Julia {{{
 Plug 'JuliaEditorSupport/julia-vim'
@@ -155,6 +175,10 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'lervag/vimtex', {'for': 'tex'}
 au FileType tex set linebreak
 let g:tex_conceal = ""
+" }}}
+" Markdown {{{
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 " }}}
 " Nim {{{
 Plug 'zah/nim.vim', {'for': 'nim'}
