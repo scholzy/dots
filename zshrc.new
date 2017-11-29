@@ -1,6 +1,13 @@
 #!/usr/bin/env zsh
 
 #
+# Install missing functions if on the raijin supercomputer. This needs to be
+# done first, or else zplug will not work.
+#
+
+[[ "$(hostname)" =~ "raijin.*" ]] && fpath+=/usr/share/zsh/4.3.11/functions
+
+#
 # Initialize the zplug plugin manager.
 #
 
@@ -16,9 +23,6 @@ source "${ZPLUG_HOME}/init.zsh"
 
 # Use emacs keybindings.
 bindkey -e
-
-# Install missing functions if on the raijin supercomputer.
-[[ "$(hostname)" =~ "raijin.*" ]] && fpath+=/usr/share/zsh/4.3.11/functions
 
 # Install user-downloaded completions/functions
 fpath+="~/.zfunc"
