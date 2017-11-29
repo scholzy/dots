@@ -136,23 +136,24 @@ set laststatus=2 " Make sure the statusline is turned on
 set noshowmode " No need to show --INSERT-- anymore
 let g:lightline = {
     \ 'colorscheme': 'wombat',
-    \ 'component_function': {
-    \   'readonly': 'LightlineReadonly',
-    \   'fugitive': 'LightlineFugitive'
-    \ },
-    \ 'separator': { 'left': '', 'right': '' },
-    \ 'subseparator': { 'left': '', 'right': '' }
     \ }
-function! LightlineReadonly()
-    return &readonly ? '' : ''
-endfunction
-function! LightlineFugitive()
-    if exists('*fugitive#head')
-        let branch = fugitive#head()
-        return branch !=# '' ? ''.branch : ''
-    endif
-    return ''
-endfunction
+"     \ 'component_function': {
+"     \   'readonly': 'LightlineReadonly',
+"     \   'fugitive': 'LightlineFugitive'
+"     \ }
+"     " \ 'separator': { 'left': '', 'right': '' },
+"     " \ 'subseparator': { 'left': '', 'right': '' }
+"     \ }
+" function! LightlineReadonly()
+"     return &readonly ? '' : ''
+" endfunction
+" function! LightlineFugitive()
+"     if exists('*fugitive#head')
+"         let branch = fugitive#head()
+"         return branch !=# '' ? ''.branch : ''
+"     endif
+"     return ''
+" endfunction
 " }}}
 
 " Filetype-specific
