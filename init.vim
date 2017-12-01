@@ -181,6 +181,9 @@ let g:tex_conceal = ""
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 " }}}
+" Molpro {{{
+Plug 'antoniogsof/vim-molpro', {'for': 'molpro'}
+" }}}
 " Nim {{{
 Plug 'zah/nim.vim', {'for': 'nim'}
 " }}}
