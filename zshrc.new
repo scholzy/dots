@@ -164,6 +164,9 @@ setopt hist_ignore_space
 setopt hist_verify
 setopt inc_append_history
 
+bindkey '^[[A' up-line-or-search
+bindkey '^[[B' down-line-or-search
+
 #
 # Finally, install all plugins which have not yet been installed.
 #
