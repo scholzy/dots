@@ -28,6 +28,12 @@ bindkey -e
 fpath+="~/.zfunc"
 
 #
+# Add programming stuff to the PATH.
+#
+
+[ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
+
+#
 # Prefer nvim if it's available.
 #
 
@@ -123,6 +129,40 @@ fancy-ctrl-z () {
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+#
+# Resize the terminal from inside tmux.
+#
+
+function resimux {
+    if [ ! "$TMUX" ]; then
+        printf '\ePtmux;\e\e[8;%i;%it\e\' $1 $2
+    else
+        printf '\e[8;%i;%it' $1 $2
+    fi
+}
+alias big="resimux 49 80"
+alias vbig="resimux 49 160"
+alias small="resimux 25 80"
+
+#
+# Save a better history.
+#
+
+if [ -z $HISTFILE ]; then
+    HISTFILE=$HOME/.zsh_history
+fi
+HISTSIZE=100000
+SAVEHIST=100000
+HISTCONTROL=ignoredups
+
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
 
 #
 # Finally, install all plugins which have not yet been installed.
