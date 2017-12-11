@@ -75,10 +75,15 @@ fi
 
 zplug "mafredri/zsh-async", \
     from:github
-zplug "sindresorhus/pure", \
-    from:github, \
-    use:pure.zsh, \
-    as:theme
+
+if [[ "$TERM" = "dumb" ]]; then
+    export PROMPT="$ "
+else
+    zplug "sindresorhus/pure", \
+        from:github, \
+        use:pure.zsh, \
+        as:theme
+fi
 
 #
 # Syntax highlighting for zsh, the faster variant.
