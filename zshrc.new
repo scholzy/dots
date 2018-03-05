@@ -34,12 +34,13 @@ fpath+="~/.zfunc"
 [ -d "$HOME/.cargo/bin" ] && PATH="$HOME/.cargo/bin:$PATH"
 
 #
-# Prefer nvim if it's available.
+# Prefer nvim if it's available and use it as the $MANPAGER.
 #
 
 if command -v nvim > /dev/null; then
     alias vi=nvim
     alias vim=nvim
+    export MANPAGER="nvim -c 'set ft=man' -"
 elif command -v vim > /dev/null; then
     alias vi=vim
 fi
@@ -79,6 +80,7 @@ zplug "mafredri/zsh-async", \
 if [[ "$TERM" = "dumb" ]]; then
     export PROMPT="$ "
 else
+    export PURE_PROMPT_SYMBOL="$"
     zplug "sindresorhus/pure", \
         from:github, \
         use:pure.zsh, \
@@ -136,19 +138,21 @@ zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
 
 #
-# Resize the terminal from inside tmux.
+# Change profile from the command line.
 #
 
-function resimux {
-    if [ ! "$TMUX" ]; then
-        printf '\ePtmux;\e\e[8;%i;%it\e\' $1 $2
-    else
-        printf '\e[8;%i;%it' $1 $2
-    fi
+function tabc() {
+    NAME=$1; if [ -z "$NAME" ]; then NAME="Coral"; fi
+    osascript -e "tell application \"Terminal\" to set current settings of front window to settings set \"$NAME\""
 }
-alias big="resimux 49 80"
-alias vbig="resimux 49 160"
-alias small="resimux 25 80"
+
+function retina() {
+    tabc "Coral"
+}
+
+function external() {
+    tabc "Coral Tewi"
+}
 
 #
 # Save a better history.

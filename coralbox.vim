@@ -629,7 +629,7 @@ hi! link Type CoralboxYellow
 " static, register, volatile, etc
 hi! link StorageClass CoralboxOrange
 " struct, union, enum, etc.
-hi! link Structure CoralboxAqua
+hi! link Structure CoralboxRed
 " typedef
 hi! link Typedef CoralboxYellow
 
@@ -1340,7 +1340,7 @@ hi! link markdownIdDeclaration markdownLinkText
 " hi! link haskellConditional CoralboxAqua
 " hi! link haskellLet CoralboxOrange
 "
-hi! link haskellType CoralboxFg1
+hi! link haskellType CoralboxGreen
 hi! link haskellIdentifier CoralboxFg1
 hi! link haskellSeparator CoralboxFg1
 hi! link haskellDelimiter CoralboxFg4

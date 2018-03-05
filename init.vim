@@ -117,6 +117,9 @@ set expandtab
 " Startup page {{{
 Plug 'mhinz/vim-startify'
 " }}}
+" Tables {{{
+Plug 'dhruvasagar/vim-table-mode'
+" }}}
 " Text objects {{{
 Plug 'wellle/targets.vim'
 " }}}
@@ -125,8 +128,10 @@ Plug 'wellle/targets.vim'
 " Colorscheme {{{
 " colorscheme noctu
 " Plug 'morhetz/gruvbox'
-let g:coralbox_termcolors=16
-let g:coralbox_contrast_dark='medium'
+let g:coralbox_termcolors = 16
+let g:coralbox_contrast_dark = 'medium'
+let g:coralbox_italic = 1
+let g:coralbox_italicize_comments = 0
 set background=dark
 colo coralbox
 " }}}
@@ -163,8 +168,16 @@ Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'c'}
 " C++ {{{
 Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
 " }}}
+" Clojure {{{
+Plug 'tpope/vim-fireplace', {'for': 'clojure'}
+Plug 'tpope/vim-salve', {'for': 'clojure'}
+Plug 'guns/vim-clojure-static', {'for': 'clojure'}
+" }}}
 " Go {{{
 Plug 'fatih/vim-go', {'for': 'go'}
+" }}}
+" Haskell {{{
+Plug 'neovimhaskell/haskell-vim', {'for': 'haskell'}
 " }}}
 " Javascript {{{
 Plug 'pangloss/vim-javascript', {'for': 'javascript'}
@@ -187,6 +200,9 @@ Plug 'antoniogsof/vim-molpro', {'for': 'molpro'}
 " Nim {{{
 Plug 'zah/nim.vim', {'for': 'nim'}
 " }}}
+" org-mode {{{
+Plug 'jceb/vim-orgmode', {'for': 'org'}
+" }}}
 " Python {{{
 " Plug 'python-mode/python-mode', {'for': 'python', 'branch': 'develop'}
 " Turn off the default options set up by python-mode
@@ -201,6 +217,9 @@ function! SetPythonOptions()
     setlocal commentstring=#%s
     setlocal define=^\s*\\(def\\\\|class\\)
 endfunction
+" }}}
+" R {{{
+Plug 'jalvesaq/Nvim-R', {'for': 'r'}
 " }}}
 " Rust {{{
 Plug 'rust-lang/rust.vim', {'for': 'rust'}
